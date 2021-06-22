@@ -45,6 +45,7 @@ export default {
   methods: {
     // 开始/暂停
     togglePlay () {
+      console.log(this.$store.state.song.isPlay)
       let player = this.$refs.player
       if (this.isPlay) {
         player.play()
@@ -58,8 +59,8 @@ export default {
       //  记录音乐时长
       this.$store.commit('setDuration', player.duration)
       //  开始播放
-      player.play()
-      this.$store.commit('setIsPlay', true)
+      // player.play()
+      // this.$store.commit('setIsPlay', true)
     },
     // 音乐播放时记录音乐的播放位置
     timeupdate () {

@@ -6,10 +6,27 @@
   height: 100vh;
   width: 50vw;
   min-width: 650px;
-  overflow: hidden;
+  position: relative;
+  
   @include layout(center, center);
+  overflow: hidden;
   .icon {
-    @include icon(6.5em, $color-blue-dark);
-    transform: rotate(-30deg);
+    // @include icon(6.5em, $color-blue-dark);
+    // transform: rotate(-30deg);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 683px;
+    overflow: hidden;
   }
+ 
+    .rain {
+      position: absolute;
+      width: 2px;
+      height: 100px;
+      background: linear-gradient(to bottom, #ffffff00, #ffffff);
+      filter: blur(1px);
+  }
+  
+ 
 }

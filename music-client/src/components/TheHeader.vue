@@ -72,8 +72,11 @@ export default {
 
             //在页面刷新时将vuex里的信息保存到sessionStorage里
             window.addEventListener("beforeunload",()=>{
+               this.$store.commit('setIsPlay', false)
+                this.$store.commit('setPlayButtonUrl', '#icon-bofang')
                 sessionStorage.setItem("store",JSON.stringify(this.$store.state))
             })
+            
   },
   mounted () {
     document.querySelector('#user').addEventListener('click', function (e) {
@@ -113,8 +116,9 @@ export default {
       if (path) {
         this.$router.push({path: path})
       } else {
+         this.$store.commit('setActiveName', '首页')
         this.$store.commit('setLoginIn', false)
-        this.$router.go(0)
+        this.$router.replace({name:'home'})
       }
     },
     goSearch () {

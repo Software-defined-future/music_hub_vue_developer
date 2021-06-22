@@ -48,6 +48,7 @@
     .item-img {
       width: $play-bar-height;
       height: $play-bar-height;
+      cursor: pointer;
       img {
         width: 100%;
       }
@@ -80,6 +81,7 @@
           width: 100%;
           background: $color-blue-shallow;
           height: 6px;
+          cursor: pointer;
           .bg {
             height: 100%;
             .cur-progress {
@@ -95,6 +97,7 @@
             background-color: $color-black;
             top: -11px;
             vertical-align: middle;
+           
           }
         }
       }

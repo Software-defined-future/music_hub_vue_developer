@@ -3,7 +3,7 @@ const song = {
     isPlay: false, // 播放状态
     playButtonUrl: '#icon-bofang', // 播放状态的图标
     id: null, // 音乐ID
-    url: '', // 歌曲URL
+    url: 'http://localhost:8888/song/《超级敏感》MV.mp3', // 歌曲URL
     duration: 0, //  音乐时长
     curTime: 0, // 当前音乐的播放位置
     changeTime: 0, //  指定播放时刻
