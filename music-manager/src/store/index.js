@@ -2,7 +2,7 @@ const store = {
   state: {
     HOST: 'http://localhost:8888',
     isPlay: false,
-    url: '',
+    url: 'http://localhost:8888/song/《超级敏感》MV.mp3',
     id: ''
   },
   getters: {

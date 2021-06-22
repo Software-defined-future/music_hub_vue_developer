@@ -4,9 +4,9 @@
       id="player"
       controls="controls"
       preload="true"
+      loop
       :src="url"
-      @canplay="startPlay"
-      @ended="ended"
+    autoplay
     ></audio>
   </div>
 </template>
