@@ -3,6 +3,8 @@ import axios from 'axios'
 import { get, post } from './http'
 
 // =======================> 用户 API
+//获取验证码
+export const getVerifyCode = (params) => get(`Captcha.jpg?`+params)
 // 登录
 export const loginIn = (params) => post(`user/login/status`, params)
 // 注册

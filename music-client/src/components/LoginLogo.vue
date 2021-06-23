@@ -28,7 +28,7 @@ export default {
             function () {
                 let height = parseFloat(rain.top);
                 // console.log(height);
-                console.log(rain.id+":"+k)
+                // console.log(rain.id+":"+k)
                 k++;
                 let now_height =5 * Math.pow(k / 4, 2) - 100;
                 rain.top=now_height
