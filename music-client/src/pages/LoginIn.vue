@@ -61,9 +61,9 @@ export default {
     let validateVerifyCode = (rule, value, callback) => {
       if (value === "") {
         callback(new Error("请输入验证码"));
-      } else if(value != this.rightCode) {
+      } else if(value != this.rightCode){
         callback(new Error("验证码错误"));
-      }else{
+      }else {
         callback();
       }
     };
@@ -90,12 +90,16 @@ export default {
         verifyCode: [
           {
             validator: validateVerifyCode,
-            message: "请输入验证码",
+            // message: "请输入验证码",
             trigger: "blur"
           }
         ]
       }
     };
+  },
+  created(){
+    this.updateVerifyCode()
+
   },
   mounted() {
     this.changeIndex("登录");
@@ -117,6 +121,10 @@ export default {
     },
     handleleLoginIn() {
       let _this = this;
+       if (this.loginForm.password === ""||this.loginForm.username==="") {
+           this.notify( "用户名或密码错误","error");
+        return;
+      }
       if (this.loginForm.verifyCode != this.rightCode) {
            this.notify( "验证码错误","error");
         return;
