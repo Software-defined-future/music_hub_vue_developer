@@ -4,7 +4,7 @@
 <div class="recommend-song">
    <div class="recommend-title">相似歌曲</div>
     <div class="song-item" v-for="song in recommend_songs" :key="song.id">
-      <img width="50px" height="50px" :src=song.img alt="">
+      <img width="50px" height="50px" :src=url+song.img alt="">
         <div class="song-detail">
             <div class="song-name">{{song.name}}</div>
             <div class="singer">{{song.singer}}</div>
@@ -29,11 +29,11 @@
   </div>
   <div class="container-list">
    <div class="container-title">包含这首歌的歌单</div>
-    <div class="list-item" v-for="song in recommend_songs" :key="song.id">
-      <img width="50px" height="50px" :src=song.pic alt="">
+    <div class="list-item" v-for="list in container_list" :key="list.id">
+      <img width="50px" height="50px" :src=url+list.pic alt="">
         <div class="list-detail">
-            <div class="list-name">{{song.title}}</div>
-            <div class="score">评分：{{song.score}}</div>
+            <div class="list-name">{{list.title}}</div>
+            <div class="score">评分：{{list.score}}</div>
         </div>
     </div>
   </div>
@@ -54,6 +54,7 @@ export default {
   },
   data () {
     return {
+      url:'http://localhost:8888',
       lrcTop: '200px', // 歌词滑动
       showLrc: false, // 切换唱片和歌词
       lyr: [], // 当前歌曲的歌词
@@ -113,6 +114,7 @@ export default {
       getContainerList(this.id)
       .then(res =>{
         this.container_list = res
+        // console.log(res)
       }).catch(err => {
           console.log(err)
         })
