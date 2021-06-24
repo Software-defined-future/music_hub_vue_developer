@@ -20,10 +20,10 @@
         <div>
           <h3>歌单评分：</h3>
           <div>
-            <el-rate v-model="value5" disabled></el-rate>
+            <el-rate v-model="singers.score" disabled></el-rate>
           </div>
         </div>
-        <span>{{value5 * 2}}</span>
+        <span>{{singers.score * 2}}</span>
         <div>
           <h3>评价：</h3>
           <div @click="pushValue()">
@@ -79,7 +79,7 @@ export default {
     this.songListId = this.tempList.id // 给歌单ID赋值
     this.singers = this.tempList
     this.getSongId() // 获取歌单里面的歌曲ID
-    this.getRank(this.songListId) // 获取评分
+   // this.getRank(this.songListId) // 获取评分
   },
   methods: {
     // 收集歌单里面的歌曲

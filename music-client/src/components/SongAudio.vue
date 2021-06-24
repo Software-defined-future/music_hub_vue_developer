@@ -45,7 +45,7 @@ export default {
   methods: {
     // 开始/暂停
     togglePlay () {
-      console.log(this.$store.state.song.isPlay)
+    
       let player = this.$refs.player
       if (this.isPlay) {
         player.play()

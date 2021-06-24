@@ -24,7 +24,8 @@ export const getSongListOfStyle = (style) => get(`songList/style/detail?style=${
 export const getSongListOfLikeTitle = (keywords) => get(`songList/likeTitle/detail?title=${keywords}`)
 // 返回歌单里指定歌单ID的歌曲
 export const getListSongOfSongId = (songListId) => get(`listSong/detail?songListId=${songListId}`)
-
+//获取包含歌曲的歌单
+export const getContainerList = (song) => get(`songList/container/songList?song=${song}`)
 
 // =======================> 歌手 API
 // 返回所有歌手
@@ -77,3 +78,5 @@ export const download = (url) => axios({
   url: url,
   responseType: 'blob'
 })
+//获取相似歌曲
+export const getRecomendSongs = (song) => get(`song/similar/recommend?song=${song}`)

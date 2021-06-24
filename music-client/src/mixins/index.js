@@ -36,6 +36,7 @@ const mixin = {
     },
     // 播放
     toplay: function (id, url, pic, index, name, lyric) {
+      this.$store.commit('setIsPlay', false)
       this.$store.commit('setId', id)
       this.$store.commit('setListIndex', index)
       this.$store.commit('setUrl', this.$store.state.configure.HOST + url)
