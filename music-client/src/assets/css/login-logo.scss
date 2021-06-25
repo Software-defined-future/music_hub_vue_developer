@@ -3,9 +3,9 @@
 
 .login-logo {
   background-color: $color-blue-light;
-  height: 100vh;
-  width: 50vw;
-  min-width: 650px;
+  height: 803px;
+  width: 518px;
+
   position: relative;
   
   @include layout(center, center);
@@ -15,8 +15,8 @@
     // transform: rotate(-30deg);
     position: absolute;
     bottom: 0;
-    width: 100%;
-    height: 683px;
+    width: 518px;
+    height: 733px;
     overflow: hidden;
   }
  

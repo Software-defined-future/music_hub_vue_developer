@@ -4,7 +4,7 @@
 <div class="recommend-song">
    <div class="recommend-title">相似歌曲</div>
     <div class="song-item" v-for="song in recommend_songs" :key="song.id">
-      <img width="50px" height="50px" :src=url+song.img alt="">
+      <img width="50px" height="50px" :src=song.img alt="">
         <div class="song-detail">
             <div class="song-name">{{song.name}}</div>
             <div class="singer">{{song.singer}}</div>
@@ -45,7 +45,7 @@ import { mapGetters } from 'vuex'
 import mixin from '../mixins'
 import Comment from '../components/Comment'
 import{getRecomendSongs, getContainerList} from '../api/index'
-
+import test from '../assets/img/swiper/super.png'
 export default {
   name: 'lyric',
   mixins: [mixin],
@@ -58,7 +58,7 @@ export default {
       lrcTop: '200px', // 歌词滑动
       showLrc: false, // 切换唱片和歌词
       lyr: [], // 当前歌曲的歌词
-      recommend_songs:[{id:0,img:"",name:"",singer:""}],
+      recommend_songs:[{id:0,img:test,name:"超级敏感",singer:"A-SOUL"}],
       container_list:[{id:0,pic:"",title:"",score:""}]
     }
   },
@@ -97,7 +97,7 @@ export default {
   created () {
     this.lyr = this.lyric ? this.lyric : []
      //获取相似歌曲
-    this.getRecomendSongs()
+   // this.getRecomendSongs()
     //获取包含该歌曲的列表
     this.getContainerList()
   },

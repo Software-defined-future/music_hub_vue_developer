@@ -12,15 +12,21 @@
 			<li></li>
 			<li></li>
 		</ul>
-   <img :src="attachImageUrl('/a-soul/嘉然4.0.png')" class="icon"  alt="">
+   <img :src=pic class="icon"  alt="">
   </div>
 </template>
 
 <script>
-import mixin from '../mixins'
+import img from '../assets/img/swiper/diana1.png'
 export default {
   name: 'login-logo',
-  mixins: [mixin]
+    data(){
+    return{
+      pic:img,
+   
+    }
+  },
+
 }
 </script>
 

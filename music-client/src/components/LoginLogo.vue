@@ -1,17 +1,18 @@
 <template>
   <div class="login-logo">
-   <img :src="attachImageUrl('/a-soul/杜向晚2.0.jpg')" class="icon"  alt="">
+   <img :src=pic class="icon"  alt="">
    <div class="rain" v-for="item in rains" v-bind:key="item.id" :style="{ 'top' :item.top+'px', 'left':item.left+'px',  'opacity':item.opacity }"></div>
   </div>
 </template>
 
 <script>
-import mixin from '../mixins'
+ import img from "../assets/img/swiper/ava1.png"
 export default {
   name: 'login-logo',
-  mixins: [mixin],
+
   data(){
     return{
+      pic:img,
       rains:[],
       index:1,
       timer:null
