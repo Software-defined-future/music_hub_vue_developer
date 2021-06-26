@@ -43,6 +43,10 @@
   }
 }
 
+.list-content .song-item:hover{
+  background: #f4eaff;
+}
+
 .is-play {
   color: $color-blue-active;
   font-weight: bold;

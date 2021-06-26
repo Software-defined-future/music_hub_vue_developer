@@ -23,7 +23,12 @@ const loginMsg = [{
 }]
 
 // 用户下拉菜单项
-const menuList = [{
+const menuList = [
+  {
+    name: '我的云盘',
+    path: '/myCloud'
+  },
+  {
   name: '设置',
   path: '/setting'
 }, {

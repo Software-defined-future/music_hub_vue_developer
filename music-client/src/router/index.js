@@ -69,6 +69,10 @@ const router = {
       path: '/setting',
       name: 'setting',
       component: () => import('@/pages/Setting')
+    },{
+      path: '/myCloud',
+      name: 'myCloud',
+      component: () => import('@/pages/MyCloud')
     }
   ],
   scrollBehavior(to, from, savedPosition) {

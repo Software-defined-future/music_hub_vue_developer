@@ -38,7 +38,7 @@ const mixin = {
     toplay: function (id, url, pic, index, name, lyric) {
       this.$store.commit('setIsPlay', false)
       this.$store.commit('setId', id)
-      this.$store.commit('setListIndex', index)
+      this.$store.commit('setListIndex', index)  //在播放列表的位置
       this.$store.commit('setUrl', this.$store.state.configure.HOST + url)
       this.$store.commit('setpicUrl', this.$store.state.configure.HOST + pic)
       this.$store.commit('setTitle', this.replaceFName(name))
@@ -90,6 +90,9 @@ const mixin = {
         return a[0] - b[0]
       })
       return result
+    },
+    getUrl (url) {
+      return `${this.$store.state.configure.HOST}/${url}`
     },
     // 搜索音乐
     getSong() {
