@@ -5,6 +5,7 @@
     <div class="section">
       <el-upload
         drag
+    
         :action="uploadUrl()"
         :show-file-list="false"
         :on-success="handleAvatarSuccess"

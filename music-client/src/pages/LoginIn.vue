@@ -35,7 +35,7 @@
 <script>
 import LoginLogo from "../components/LoginLogo";
 import mixin from "../mixins";
-import { loginIn, getVerifyCode } from "../api/index";
+import { loginIn, getVerifyCode, getSize } from "../api/index";
 
 export default {
   name: "login-in",
@@ -143,6 +143,7 @@ export default {
             });
             _this.setUserMsg(res.userMsg[0]);
             _this.$store.commit("setLoginIn", true);
+            _this.getSize(res.userMsg[0].id);
             setTimeout(function() {
               _this.changeIndex("首页");
               _this.$router.push({ path: "/" });
@@ -152,6 +153,16 @@ export default {
           }
         })
         .catch(failResponse => {});
+    },
+    getSize(id){
+      let _this = this;
+        getSize(id)
+        .then(res => {
+         _this.$store.commit("setUsedMemory", res.size);
+        })
+        .catch(err => {
+          console.log(err);
+        });
     },
     setUserMsg(item) {
       this.$store.commit("setUserId", item.id);

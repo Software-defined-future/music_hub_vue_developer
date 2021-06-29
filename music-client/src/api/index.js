@@ -13,7 +13,10 @@ export const SignUp = (params) => post(`user/add`, params)
 export const updateUserMsg = (params) => post(`user/update`, params)
 // 返回指定ID的用户
 export const getUserOfId = (id) => get(`user/detail?id=${id}`)
-
+//获取用户所用的内存
+export const getSize = (id) => get(`cloud/size?id=${id}`)
+//获取用户所有的云歌曲
+export const getCloudSongs = (id) => get(`cloud/allSongs?id=${id}`)
 
 // =======================> 歌单 API
 // 获取全部歌单
@@ -39,7 +42,8 @@ export const getSingerOfSex = (sex) => get(`singer/sex/detail?sex=${sex}`)
 export const getCollectionOfUser = (userId) => get(`collection/detail?userId=${userId}`)
 // 添加收藏的歌曲 type: 0 代表歌曲， 1 代表歌单
 export const setCollection = (params) => post(`collection/add`, params)
-
+// 删除收藏的歌曲
+export const deleteCollection = (userId, songId) => get(`/cloud/delete?userId=${userId}&&songId=${songId}`)
 
 // =======================> 评分 API
 // 提交评分

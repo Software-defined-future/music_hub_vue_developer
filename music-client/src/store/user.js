@@ -2,7 +2,8 @@ const user = {
   state: {
     userId: '',
     username: '',
-    avator: ''
+    avator: '',
+    usedMemory: -1
   },
   getters: {
     userId: state => {
@@ -25,6 +26,13 @@ const user = {
         avator = JSON.parse(window.localStorage.getItem('avator') || null)
       }
       return avator
+    },
+    usedMemory: state =>{
+      let usedMemory = state.usedMemory
+      if (usedMemory=== -1) {
+        usedMemory = JSON.parse(window.localStorage.getItem('usedMemory') || -1)
+      }
+      return usedMemory
     }
   },
   mutations: {
@@ -39,6 +47,10 @@ const user = {
     setAvator: (state, avator) => {
       state.avator = avator
       window.localStorage.setItem('avator', JSON.stringify(avator))
+    },
+    setUsedMemory: (state,usedMemory) =>{
+      state.usedMemory = usedMemory
+      window.localStorage.setItem('usedMemory', JSON.stringify(usedMemory))
     }
   },
   actions: {}
