@@ -97,7 +97,7 @@ export default {
   created () {
     this.lyr = this.lyric ? this.lyric : []
      //获取相似歌曲
-   // this.getRecomendSongs()
+   this.getRecomendSongs()
     //获取包含该歌曲的列表
     this.getContainerList()
   },

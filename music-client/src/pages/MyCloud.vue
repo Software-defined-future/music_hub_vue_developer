@@ -256,7 +256,7 @@
 <script>
 import { mapGetters } from "vuex";
 import mixin from "../mixins";
-import { getSize, getCloudSongs, download } from "../api";
+import { getSize, getCloudSongs, download, updateCloudSong } from "../api";
 
 export default {
   name: "my-cloud",
@@ -264,9 +264,8 @@ export default {
   data() {
     return {
       calculateMemory: "",
-      row: [],
+      row: {},
       multipleSelection: [],
-      singleImg: [],
       form: {
         pic: "",
         title: "",
@@ -276,158 +275,13 @@ export default {
       musicInfoVisible: false,
       uploadBoxVisible: false,
       delVisible: false,
-      fileList: [],
       funs: ["修改信息", "上传歌词", "下载歌曲", "删除歌曲"],
       songList: [
-        {
-          pic: "img/user.jpg",
-          title: "超级敏感",
-          name: "A-SOUL",
-          intro: "嘉然小姐的狗",
-          format: "WMA",
-          size: "10M",
-          time: "2021-06-21"
-        },
-        {
-          pic: "img/user.jpg",
-          title: "超级敏感",
-          name: "A-SOUL",
-          intro: "嘉然小姐的狗",
-          format: "WAV",
-          size: "10M",
-          time: "2021-03-21"
-        },
-        {
-          pic: "img/user.jpg",
-          title: "超级敏感",
-          name: "A-SOUL",
-          intro: "嘉然小姐的狗",
-          format: "WAV",
-          size: "10M",
-          time: "2011-06-21"
-        },
-        {
-          pic: "img/user.jpg",
-          title: "超级敏感",
-          name: "A-SOUL",
-          intro: "嘉然小姐的狗",
-          format: "MP3",
-          size: "10M",
-          time: "2051-03-21"
-        },
-        {
-          pic: "img/user.jpg",
-          title: "超级敏感",
-          name: "A-SOUL",
-          intro: "嘉然小姐的狗",
-          format: "MP3",
-          size: "10M",
-          time: "2021-06-21"
-        },
-        {
-          pic: "img/user.jpg",
-          title: "超级敏感",
-          name: "A-SOUL",
-          intro: "嘉然小姐的狗",
-          format: "WMA",
-          size: "10M",
-          time: "2020-03-11"
-        },
-        {
-          pic: "img/user.jpg",
-          title: "超级敏感",
-          name: "A-SOUL",
-          intro: "嘉然小姐的狗",
-          format: "MP3",
-          size: "10M",
-          time: "2011-07-21"
-        },
-        {
-          pic: "img/user.jpg",
-          title: "超级敏感",
-          name: "A-SOUL",
-          intro: "嘉然小姐的狗",
-          format: "MP3",
-          size: "10M",
-          time: "2051-03-01"
-        },
-        {
-          pic: "img/user.jpg",
-          title: "超级敏感",
-          name: "A-SOUL",
-          intro: "嘉然小姐的狗",
-          format: "MP3",
-          size: "10M",
-          time: "2021-06-21"
-        },
-        {
-          pic: "img/user.jpg",
-          title: "超级敏感",
-          name: "A-SOUL",
-          intro: "嘉然小姐的狗",
-          format: "MP3",
-          size: "10M",
-          time: "2021-03-21"
-        },
-        {
-          pic: "img/user.jpg",
-          title: "超级敏感",
-          name: "A-SOUL",
-          intro: "嘉然小姐的狗",
-          format: "MP3",
-          size: "10M",
-          time: "2011-06-21"
-        },
-        {
-          pic: "img/user.jpg",
-          title: "超级敏感",
-          name: "A-SOUL",
-          intro: "嘉然小姐的狗",
-          format: "MP3",
-          size: "10M",
-          time: "2051-03-21"
-        },
-        {
-          pic: "img/user.jpg",
-          title: "超级敏感",
-          name: "A-SOUL",
-          intro: "嘉然小姐的狗",
-          format: "MP3",
-          size: "10M",
-          time: "2021-06-21"
-        },
-        {
-          pic: "img/user.jpg",
-          title: "超级敏感",
-          name: "A-SOUL",
-          intro: "嘉然小姐的狗",
-          format: "MP3",
-          size: "10M",
-          time: "2090-03-11"
-        },
-        {
-          pic: "img/user.jpg",
-          title: "超级敏感",
-          name: "A-SOUL",
-          intro: "嘉然小姐的狗",
-          format: "MP3",
-          size: "10M",
-          time: "1011-07-21"
-        },
-        {
-          pic: "img/user.jpg",
-          title: "超级敏感",
-          name: "A-SOUL",
-          intro: "嘉然小姐的狗",
-          format: "MP3",
-          size: "10M",
-          time: "1991-03-01"
-        }
+       
       ],
 
       // currentPage: 1,
       // pageSize: 10,
-      currentRow: 0,
       rules: {
         title: [{ required: true, message: "请输入歌曲名", trigger: "blur" }],
         name: [{ required: true, message: "请输入歌手", trigger: "blur" }],
@@ -439,7 +293,7 @@ export default {
   methods: {
     refreshSongs() {
       let _this = this;
-      getCloudSongs(1)
+      getCloudSongs(this.userId)
         .then(res => {
           _this.songList = res;
         })
@@ -485,7 +339,7 @@ export default {
       } else {
         len = ((this.usedMemory * 1.0) / 1048576).toFixed(1) + "GB";
       }
-
+      this.updateBar(this.usedMemory);
       this.calculateMemory = len;
     },
     // 隐藏图片上传按钮
@@ -496,11 +350,29 @@ export default {
       // return this.$refs.upload.uploadFiles.length > 0   //判断图片上传的数量动态控制按钮隐藏与显示
     },
     alterFormURL() {
-      return `${this.$store.state.configure.HOST}/cloud/updateInfo?userId=1`;
+      return `${this.$store.state.configure.HOST}/cloud/updateInfo?userId=${this.userId}`;
     },
     submitInfo() {
+       let vm = this;
+      if(this.$refs.imgUpload.uploadFiles.length === 0){
+        // console.log("文件为0")
+  this.$refs["form"].validate(valid => {
+        if (valid) {
+           let params = new URLSearchParams()
+      params.append('userId', vm.userId)
+      params.append('id',vm.row.id)
+      params.append('name', vm.form.name)
+      params.append('intro', vm.form.intro)
+      params.append('title', vm.form.title)
+        
+         updateCloudSong(params);
+        } else {
+          return false;
+        }
+      })
+      }else {
+          // console.log("文件为1")
      
-      let vm = this;
       this.$refs["form"].validate(valid => {
         if (valid) {
           vm.$refs.imgUpload.submit();
@@ -509,6 +381,9 @@ export default {
           return false;
         }
       });
+      }
+
+
       this.musicInfoVisible = false;
     },
     uploadUrl() {
@@ -527,7 +402,7 @@ export default {
         this.$message.error(`${response.message}`);
         this.$store.commit("setUsedMemory", this.usedMemory - file.size);
       } else if (response.code === 1) {
-        this.updateBar(this.usedMemory);
+     
 
         this.$message({
           type: "success",
@@ -690,10 +565,10 @@ export default {
   computed: {
     ...mapGetters(["userId", "usedMemory"])
   },
-  created() {
+  mounted() {
     let _this = this;
 
-    getCloudSongs(1)
+    getCloudSongs(this.userId)
       .then(res => {
         _this.songList = res;
         this.$store.commit("setListOfSongs", _this.songList);

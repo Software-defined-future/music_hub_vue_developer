@@ -17,6 +17,8 @@ export const getUserOfId = (id) => get(`user/detail?id=${id}`)
 export const getSize = (id) => get(`cloud/size?id=${id}`)
 //获取用户所有的云歌曲
 export const getCloudSongs = (id) => get(`cloud/allSongs?id=${id}`)
+//更新歌曲信息
+export const updateCloudSong = (params) => post(`cloud/updateInfo`,params)
 
 // =======================> 歌单 API
 // 获取全部歌单

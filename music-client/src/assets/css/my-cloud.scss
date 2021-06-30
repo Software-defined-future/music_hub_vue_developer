@@ -254,3 +254,10 @@
 .disable /deep/ .el-upload--picture-card {
   display: none;
 }
+
+.no-song{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
