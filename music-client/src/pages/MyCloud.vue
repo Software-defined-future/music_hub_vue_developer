@@ -473,7 +473,7 @@ export default {
           confirmButtonText: "确定"
         });
       } else if (this.funs[index] === "下载歌曲") {
-        download(this.$store.state.configure.HOST + row.url + this.row.url)
+        download(this.$store.state.configure.HOST + this.row.url)
           .then(res => {
             let content = res.data;
             let eleLink = document.createElement("a");
