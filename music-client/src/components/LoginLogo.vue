@@ -20,7 +20,7 @@ export default {
   },
   methods:{
     createRain(){
-      let rain = {id:this.index,left:Math.random() * 650,opacity:parseInt(Math.random() * 10) / 10,top:-100};
+      let rain = {id:this.index,left:Math.random() * 518,opacity:parseInt(Math.random() * 10) / 10,top:-100};
       this.index +=1
       this.rains.push(rain)
        let k = 10;
